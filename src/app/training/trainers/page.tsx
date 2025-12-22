@@ -265,7 +265,7 @@ export default function TrainersManagement() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className={`w-full px-4 py-2 border-2 rounded-lg focus:outline-none ${
+                className={`w-full  text-gray-800 px-4 py-2 border-2 rounded-lg focus:outline-none ${
                   formErrors.name ? 'border-red-500' : ''
                 }`}
                 style={{ borderColor: formErrors.name ? '#ef4444' : '#98c34f' }}
@@ -287,7 +287,7 @@ export default function TrainersManagement() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
+                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
                     formErrors.email ? 'border-red-500' : ''
                   }`}
                   style={{ borderColor: formErrors.email ? '#ef4444' : '#98c34f' }}
@@ -310,7 +310,7 @@ export default function TrainersManagement() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className={`w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
+                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
                     formErrors.phone ? 'border-red-500' : ''
                   }`}
                   style={{ borderColor: formErrors.phone ? '#ef4444' : '#98c34f' }}
@@ -333,7 +333,7 @@ export default function TrainersManagement() {
                   type="text"
                   value={formData.specialization}
                   onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                  className={`w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
+                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
                     formErrors.specialization ? 'border-red-500' : ''
                   }`}
                   style={{ borderColor: formErrors.specialization ? '#ef4444' : '#98c34f' }}
@@ -356,7 +356,7 @@ export default function TrainersManagement() {
                   type="text"
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className={`w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
+                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
                     formErrors.experience ? 'border-red-500' : ''
                   }`}
                   style={{ borderColor: formErrors.experience ? '#ef4444' : '#98c34f' }}
@@ -372,7 +372,7 @@ export default function TrainersManagement() {
           <div className="flex gap-3 mt-6">
             <button
               onClick={handleSubmit}
-              className="flex-1 px-6 py-3 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+              className="flex-1 px-6 py-3  text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
               style={{ backgroundColor: '#98c34f' }}
             >
               <Save size={20} />

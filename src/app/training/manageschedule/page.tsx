@@ -177,7 +177,7 @@ export default function ScheduleManagement() {
                         type="text"
                         value={editingSession.title}
                         onChange={(e) => setEditingSession({ ...editingSession, title: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       />
                     </div>
@@ -189,7 +189,7 @@ export default function ScheduleManagement() {
                         type="text"
                         value={editingSession.trainer}
                         onChange={(e) => setEditingSession({ ...editingSession, trainer: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       />
                     </div>
@@ -201,7 +201,7 @@ export default function ScheduleManagement() {
                         type="date"
                         value={editingSession.date}
                         onChange={(e) => setEditingSession({ ...editingSession, date: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       />
                     </div>
@@ -213,7 +213,7 @@ export default function ScheduleManagement() {
                         type="text"
                         value={editingSession.time}
                         onChange={(e) => setEditingSession({ ...editingSession, time: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       />
                     </div>
@@ -224,7 +224,7 @@ export default function ScheduleManagement() {
                       <select
                         value={editingSession.mode}
                         onChange={(e) => setEditingSession({ ...editingSession, mode: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       >
                         <option>حضوري</option>
@@ -240,7 +240,7 @@ export default function ScheduleManagement() {
                         type="text"
                         value={editingSession.location}
                         onChange={(e) => setEditingSession({ ...editingSession, location: e.target.value })}
-                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none"
+                        className="w-full px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
                         style={{ borderColor: '#98c34f' }}
                       />
                     </div>

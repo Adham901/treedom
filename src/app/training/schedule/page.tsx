@@ -289,7 +289,7 @@ export default function TrainingProgramUpload() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                   style={{ borderColor: errors.name ? "#ef4444" : "#123247" }}
                   placeholder="مثال: برنامج القيادة الإدارية المتقدمة"
                 />
@@ -305,7 +305,7 @@ export default function TrainingProgramUpload() {
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                   style={{ borderColor: errors.category ? "#ef4444" : "#123247" }}
                 >
                   <option value="">اختر الفئة</option>
@@ -328,7 +328,7 @@ export default function TrainingProgramUpload() {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={5}
-                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                   style={{ borderColor: errors.description ? "#ef4444" : "#123247" }}
                   placeholder="اكتب وصف شامل للبرنامج التدريبي..."
                 />
@@ -346,7 +346,7 @@ export default function TrainingProgramUpload() {
                   value={formData.objectives}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                  className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                   style={{ borderColor: errors.objectives ? "#ef4444" : "#123247" }}
                   placeholder="ما هي الأهداف التي سيحققها المتدرب؟"
                 />
@@ -365,7 +365,7 @@ export default function TrainingProgramUpload() {
                     name="days"
                     value={formData.days}
                     onChange={handleInputChange}
-                    className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                    className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                     style={{ borderColor: errors.days ? "#ef4444" : "#123247" }}
                     placeholder="5"
                   />
@@ -380,7 +380,7 @@ export default function TrainingProgramUpload() {
                     name="hours"
                     value={formData.hours}
                     onChange={handleInputChange}
-                    className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right"
+                    className="w-full px-5 py-4 text-lg border-2 rounded-xl focus:outline-none text-right  text-gray-800"
                     style={{ borderColor: errors.hours ? "#ef4444" : "#123247" }}
                     placeholder="25"
                   />
@@ -407,7 +407,7 @@ export default function TrainingProgramUpload() {
                       multiple
                       accept=".pdf,.ppt,.pptx,.png,.jpg,.jpeg"
                       onChange={handleFileUpload}
-                      className="hidden"
+                      className="hidden  text-gray-800"
                     />
                   </label>
                   <p className="text-base text-gray-500 mt-3">PDF, PowerPoint, صور (حد أقصى 10 ملفات)</p>

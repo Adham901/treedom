@@ -227,7 +227,7 @@ export default function TrainingDelivery() {
                     <div className="mb-3">
                       <label className="block text-sm font-medium mb-2 text-gray-700">رابط العرض التقديمي</label>
                       <div className="flex gap-2">
-                        <input type="text" value={presentationLink} onChange={(e) => setPresentationLink(e.target.value)} placeholder="https://presentation-link.com" className="flex-1 px-4 py-2 border-2 rounded-lg focus:outline-none" style={{ borderColor: '#98c34f' }} />
+                        <input type="text" value={presentationLink} onChange={(e) => setPresentationLink(e.target.value)} placeholder="https://presentation-link.com" className="flex-1 px-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800" style={{ borderColor: '#98c34f' }} />
                         <button onClick={handleShareLink} className="px-4 py-2 text-white rounded-lg flex items-center gap-2 hover:opacity-90" style={{ backgroundColor: '#98c34f' }}>
                           <Link2 size={18} /> مشاركة
                         </button>

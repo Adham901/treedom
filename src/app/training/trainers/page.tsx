@@ -1,5 +1,6 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+
+import { useState } from 'react';
 import {
   Users,
   Plus,
@@ -16,8 +17,7 @@ import {
   Mail,
 } from 'lucide-react';
 
-/* ===================== TYPES ===================== */
-type Trainer = {
+interface Trainer {
   id: number;
   name: string;
   email: string;
@@ -26,24 +26,180 @@ type Trainer = {
   experience: string;
   activeSessions: number;
   completedSessions: number;
-};
+}
 
-type FormData = {
+interface FormData {
   name: string;
   email: string;
   phone: string;
   specialization: string;
   experience: string;
-};
+}
 
-type FormErrors = Partial<FormData>;
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  specialization?: string;
+  experience?: string;
+}
 
-type Notification = {
+interface Notification {
   message: string;
   type: 'success' | 'error';
+}
+
+interface TrainerModalProps {
+  isEdit?: boolean;
+  formData: FormData;
+  setFormData: (data: FormData) => void;
+  formErrors: FormErrors;
+  handleSubmit: () => void;
+  handleClose: () => void;
+}
+
+const TrainerModal = ({ 
+  isEdit = false, 
+  formData, 
+  setFormData, 
+  formErrors, 
+  handleSubmit, 
+  handleClose 
+}: TrainerModalProps) => {
+  const title = isEdit ? 'تعديل بيانات المدرب' : 'إضافة مدرب جديد';
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={handleClose}>
+      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-2xl font-bold" style={{ color: '#123247' }}>
+            {title}
+          </h3>
+          <button onClick={handleClose} className="text-gray-500 hover:text-gray-700">
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
+              الاسم الكامل <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className={`w-full text-gray-800 px-4 py-2 border-2 rounded-lg focus:outline-none`}
+              style={{ borderColor: formErrors.name ? '#ef4444' : '#98c34f' }}
+              placeholder="أدخل اسم المدرب"
+            />
+            {formErrors.name && (
+              <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
+              البريد الإلكتروني <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <Mail className="absolute right-3 top-3 text-gray-400" size={20} />
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none"
+                style={{ borderColor: formErrors.email ? '#ef4444' : '#98c34f' }}
+                placeholder="trainer@example.com"
+              />
+            </div>
+            {formErrors.email && (
+              <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
+              رقم الجوال <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <Phone className="absolute right-3 top-3 text-gray-400" size={20} />
+              <input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none"
+                style={{ borderColor: formErrors.phone ? '#ef4444' : '#98c34f' }}
+                placeholder="+966501234567"
+              />
+            </div>
+            {formErrors.phone && (
+              <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
+              التخصص <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <Award className="absolute right-3 top-3 text-gray-400" size={20} />
+              <input
+                type="text"
+                value={formData.specialization}
+                onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
+                className="w-full text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none"
+                style={{ borderColor: formErrors.specialization ? '#ef4444' : '#98c34f' }}
+                placeholder="مثال: البرمجة وتطوير الويب"
+              />
+            </div>
+            {formErrors.specialization && (
+              <p className="text-red-500 text-sm mt-1">{formErrors.specialization}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
+              سنوات الخبرة <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <Briefcase className="absolute right-3 top-3 text-gray-400" size={20} />
+              <input
+                type="text"
+                value={formData.experience}
+                onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                className="w-full text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none"
+                style={{ borderColor: formErrors.experience ? '#ef4444' : '#98c34f' }}
+                placeholder="مثال: 5 سنوات"
+              />
+            </div>
+            {formErrors.experience && (
+              <p className="text-red-500 text-sm mt-1">{formErrors.experience}</p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex gap-3 mt-6">
+          <button
+            onClick={handleSubmit}
+            className="flex-1 px-6 py-3 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#98c34f' }}
+          >
+            <Save size={20} />
+            {isEdit ? 'حفظ التعديلات' : 'إضافة المدرب'}
+          </button>
+          <button
+            onClick={handleClose}
+            className="flex-1 px-6 py-3 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition-colors"
+          >
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-/* ===================== COMPONENT ===================== */
 export default function TrainersManagement() {
   const [trainers, setTrainers] = useState<Trainer[]>([
     {
@@ -88,12 +244,12 @@ export default function TrainersManagement() {
     },
   ]);
 
-  const [showAddModal, setShowAddModal] = useState<boolean>(false);
-  const [showEditModal, setShowEditModal] = useState<boolean>(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState<boolean>(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [selectedTrainer, setSelectedTrainer] = useState<Trainer | null>(null);
   const [notification, setNotification] = useState<Notification | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -105,8 +261,7 @@ export default function TrainersManagement() {
 
   const [formErrors, setFormErrors] = useState<FormErrors>({});
 
-  /* ===================== HELPERS ===================== */
-  const showNotification = (message: string, type: Notification['type']) => {
+  const showNotification = (message: string, type: 'success' | 'error') => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 4000);
   };
@@ -122,7 +277,7 @@ export default function TrainersManagement() {
     setFormErrors({});
   };
 
-  const validateForm = (): boolean => {
+  const validateForm = () => {
     const errors: FormErrors = {};
 
     if (!formData.name.trim()) errors.name = 'الاسم مطلوب';
@@ -146,7 +301,6 @@ export default function TrainersManagement() {
     return Object.keys(errors).length === 0;
   };
 
-  /* ===================== CRUD ===================== */
   const handleAddTrainer = () => {
     if (!validateForm()) {
       showNotification('يرجى تعبئة جميع الحقول المطلوبة بشكل صحيح', 'error');
@@ -222,178 +376,15 @@ export default function TrainersManagement() {
     showNotification('تم حذف المدرب بنجاح', 'success');
   };
 
-  /* ===================== FILTER ===================== */
   const filteredTrainers = trainers.filter(trainer =>
     trainer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     trainer.specialization.toLowerCase().includes(searchTerm.toLowerCase()) ||
     trainer.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
-  const TrainerModal = ({ isEdit = false }) => {
-    const title = isEdit ? 'تعديل بيانات المدرب' : 'إضافة مدرب جديد';
-    const handleSubmit = isEdit ? handleUpdateTrainer : handleAddTrainer;
-    const handleClose = () => {
-      if (isEdit) {
-        setShowEditModal(false);
-        setSelectedTrainer(null);
-      } else {
-        setShowAddModal(false);
-      }
-      resetForm();
-    };
-
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={handleClose}>
-        <div className="bg-white rounded-xl shadow-2xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-2xl font-bold" style={{ color: '#123247' }}>
-              {title}
-            </h3>
-            <button onClick={handleClose} className="text-gray-500 hover:text-gray-700">
-              <X size={24} />
-            </button>
-          </div>
-
-          <div className="space-y-4">
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
-                الاسم الكامل <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className={`w-full  text-gray-800 px-4 py-2 border-2 rounded-lg focus:outline-none ${
-                  formErrors.name ? 'border-red-500' : ''
-                }`}
-                style={{ borderColor: formErrors.name ? '#ef4444' : '#98c34f' }}
-                placeholder="أدخل اسم المدرب"
-              />
-              {formErrors.name && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
-              )}
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
-                البريد الإلكتروني <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <Mail className="absolute right-3 top-3 text-gray-400" size={20} />
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
-                    formErrors.email ? 'border-red-500' : ''
-                  }`}
-                  style={{ borderColor: formErrors.email ? '#ef4444' : '#98c34f' }}
-                  placeholder="trainer@example.com"
-                />
-              </div>
-              {formErrors.email && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-              )}
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
-                رقم الجوال <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <Phone className="absolute right-3 top-3 text-gray-400" size={20} />
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
-                    formErrors.phone ? 'border-red-500' : ''
-                  }`}
-                  style={{ borderColor: formErrors.phone ? '#ef4444' : '#98c34f' }}
-                  placeholder="+966501234567"
-                />
-              </div>
-              {formErrors.phone && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
-              )}
-            </div>
-
-            {/* Specialization */}
-            <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
-                التخصص <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <Award className="absolute right-3 top-3 text-gray-400" size={20} />
-                <input
-                  type="text"
-                  value={formData.specialization}
-                  onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
-                    formErrors.specialization ? 'border-red-500' : ''
-                  }`}
-                  style={{ borderColor: formErrors.specialization ? '#ef4444' : '#98c34f' }}
-                  placeholder="مثال: البرمجة وتطوير الويب"
-                />
-              </div>
-              {formErrors.specialization && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.specialization}</p>
-              )}
-            </div>
-
-            {/* Experience */}
-            <div>
-              <label className="block text-sm font-medium mb-2" style={{ color: '#123247' }}>
-                سنوات الخبرة <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <Briefcase className="absolute right-3 top-3 text-gray-400" size={20} />
-                <input
-                  type="text"
-                  value={formData.experience}
-                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className={`w-full  text-gray-800 pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none ${
-                    formErrors.experience ? 'border-red-500' : ''
-                  }`}
-                  style={{ borderColor: formErrors.experience ? '#ef4444' : '#98c34f' }}
-                  placeholder="مثال: 5 سنوات"
-                />
-              </div>
-              {formErrors.experience && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.experience}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="flex gap-3 mt-6">
-            <button
-              onClick={handleSubmit}
-              className="flex-1 px-6 py-3  text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: '#98c34f' }}
-            >
-              <Save size={20} />
-              {isEdit ? 'حفظ التعديلات' : 'إضافة المدرب'}
-            </button>
-            <button
-              onClick={handleClose}
-              className="flex-1 px-6 py-3 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition-colors"
-            >
-              إلغاء
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6" dir="rtl">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-6">
           <h1 className="text-4xl font-bold mb-2" style={{ color: '#123247' }}>
             إدارة المدربين
@@ -403,7 +394,6 @@ export default function TrainersManagement() {
           </p>
         </div>
 
-        {/* Notification */}
         {notification && (
           <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
             notification.type === 'success' 
@@ -421,7 +411,6 @@ export default function TrainersManagement() {
           </div>
         )}
 
-        {/* Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white rounded-xl shadow-md p-6 border-r-4" style={{ borderColor: '#123247' }}>
             <div className="flex items-center justify-between">
@@ -458,10 +447,8 @@ export default function TrainersManagement() {
           </div>
         </div>
 
-        {/* Controls */}
         <div className="bg-white rounded-xl shadow-md p-4 mb-6">
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-            {/* Search */}
             <div className="flex-1 w-full relative">
               <Search className="absolute right-3 top-3 text-gray-400" size={20} />
               <input
@@ -469,12 +456,11 @@ export default function TrainersManagement() {
                 placeholder="البحث عن مدرب..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none  text-gray-800"
+                className="w-full pr-10 pl-4 py-2 border-2 rounded-lg focus:outline-none text-gray-800"
                 style={{ borderColor: '#98c34f' }}
               />
             </div>
 
-            {/* Add Button */}
             <button
               onClick={() => setShowAddModal(true)}
               className="px-6 py-2 text-white rounded-lg font-medium flex items-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap"
@@ -486,7 +472,6 @@ export default function TrainersManagement() {
           </div>
         </div>
 
-        {/* Trainers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTrainers.map((trainer) => (
             <div key={trainer.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
@@ -553,7 +538,6 @@ export default function TrainersManagement() {
           ))}
         </div>
 
-        {/* Empty State */}
         {filteredTrainers.length === 0 && (
           <div className="bg-white rounded-xl shadow-md p-12 text-center">
             <Users size={64} className="mx-auto mb-4 text-gray-300" />
@@ -574,11 +558,34 @@ export default function TrainersManagement() {
           </div>
         )}
 
-        {/* Modals */}
-        {showAddModal && <TrainerModal />}
-        {showEditModal && <TrainerModal isEdit={true} />}
+        {showAddModal && (
+          <TrainerModal 
+            isEdit={false}
+            formData={formData}
+            setFormData={setFormData}
+            formErrors={formErrors}
+            handleSubmit={handleAddTrainer}
+            handleClose={() => {
+              setShowAddModal(false);
+              resetForm();
+            }}
+          />
+        )}
+        {showEditModal && (
+          <TrainerModal 
+            isEdit={true}
+            formData={formData}
+            setFormData={setFormData}
+            formErrors={formErrors}
+            handleSubmit={handleUpdateTrainer}
+            handleClose={() => {
+              setShowEditModal(false);
+              setSelectedTrainer(null);
+              resetForm();
+            }}
+          />
+        )}
 
-        {/* Delete Confirmation Dialog */}
         {showDeleteDialog && selectedTrainer && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowDeleteDialog(false)}>
             <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md mx-4" onClick={(e) => e.stopPropagation()}>

@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { GraduationCap } from 'lucide-react';
+
 
 export default function FreedomLoadingScreen({
   onFinish,
@@ -55,10 +56,14 @@ export default function FreedomLoadingScreen({
           </div>
 
           {/* Center Circle */}
-          <div className="relative w-80 h-80 sm:w-[22rem] sm:h-[22rem] rounded-full bg-gradient-to-br from-[#123247] via-[#1a4a6b] to-[#123247] flex items-center justify-center shadow-2xl animate-pulse-scale">
-            <div className="absolute inset-8 rounded-full bg-gradient-to-br from-[#98c34f]/20 to-transparent blur-xl" />
-            <GraduationCap className="w-32 h-32 sm:w-40 sm:h-40 text-[#98c34f]" />
-          </div>
+         <div className="relative w-80 h-80 sm:w-[22rem] sm:h-[22rem] rounded-full bg-gradient-to-br from-[#123247] via-[#1a4a6b] to-[#123247] flex items-center justify-center shadow-2xl animate-pulse-scale">
+  <div className="absolute inset-8 rounded-full bg-gradient-to-br from-[#98c34f]/20 to-transparent blur-xl" />
+   <Image
+    src="/Treedom-02-01.png" 
+    alt="Treedom Logo" 
+    className="w-48 h-48 sm:w-56 sm:h-56 object-contain"
+  />
+</div>
 
           {/* Floating dots */}
           <div className="absolute top-1/4 right-0 w-3 h-3 bg-[#98c34f] rounded-full animate-float" />
